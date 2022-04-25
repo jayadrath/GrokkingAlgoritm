@@ -69,15 +69,6 @@ static void quickSort(int[] arr, int low, int high)
 	}
 }
 
-// Function to print an array
-static void printArray(int[] arr, int size)
-{
-	for(int i = 0; i < size; i++)
-		System.out.print(arr[i] + " ");
-		
-	System.out.println();
-}
-
 // Driver Code
 public static void main(String[] args)
 {
@@ -87,6 +78,6 @@ public static void main(String[] args)
 	
 	quickSort(arr, 0, n - 1);
 	System.out.println("Sorted array: ");
-	printArray(arr, n);
+	System.out.println(Arrays.toString(arr));
 }
 }
