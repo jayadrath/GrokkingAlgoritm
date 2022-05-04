@@ -29,7 +29,7 @@ public class LargestWaterContainer {
 			int width = j - i;
 			int length = Math.min(left, right);
 			int currArea = width*length;
-			maxArea = Math.min(maxArea, currArea);
+			maxArea = Math.max(maxArea, currArea);
 			if(length == left) {
 				i++;
 			}
