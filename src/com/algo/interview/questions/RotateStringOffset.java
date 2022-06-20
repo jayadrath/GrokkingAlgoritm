@@ -1,25 +1,28 @@
 package com.algo.interview.questions;
 
+import java.util.Arrays;
+
 public class RotateStringOffset {
 
 	public static void main(String[] args) {
 		String s = "abcde";
 		int offset = 3;
-		System.out.println(rotateString(s,offset));
+		char[] charArr = rotateString(s.toCharArray(),offset);
+		System.out.println(Arrays.toString(charArr));
 	}
 	
-	public static String rotateString(String str, int offset) {
-		if(str == null || str.length() == 0 || str.length() == offset || offset%str.length() == 0) return str;
-		int rem = offset%str.length();
-		str = rotate(str, 0, str.length()-rem-1 );
-		str = rotate(str, str.length() - rem, str.length()-1 );
-		str = rotate(str, 0, str.length()-1);
-		return str;
+	public static char[] rotateString(char[] charArr, int offset) {
+		int length = charArr.length;
+		if(charArr == null || length == 0 || length == offset || offset%length == 0) return charArr;
+		int rem = offset%length;
+		charArr = rotate(charArr, 0, length-rem-1 );
+		charArr = rotate(charArr, length - rem, length-1 );
+		charArr = rotate(charArr, 0, length-1);
+		return charArr;
 	}
 
-	public static String rotate(String str, int start, int end) {
+	public static char[] rotate(char[] charArr, int start, int end) {
 		int left = start, right = end;
-		char[] charArr = str.toCharArray();
 		while(left<right) {
 			char temp = charArr[left];
 			charArr[left] = charArr[right];
@@ -27,7 +30,7 @@ public class RotateStringOffset {
 			left++;
 			right--;
 		}
-		return new String(charArr);
+		return charArr;
 	}
 	
 }
