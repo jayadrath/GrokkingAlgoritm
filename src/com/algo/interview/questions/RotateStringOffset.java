@@ -1,22 +1,25 @@
 package com.algo.interview.questions;
 
 import java.util.Arrays;
+import java.util.function.BiFunction;
 
 public class RotateStringOffset {
 
 	public static void main(String[] args) {
 		String s = "abcde";
-		int offset = 3;
-		char[] charArr = rotateString(s.toCharArray(),offset);
+		int offset = 2;
+		char[] charArr = rotateString(s.toCharArray(),offset, (a, b)-> a%b); //right rotation
+		System.out.println(Arrays.toString(charArr));
+		charArr = rotateString(s.toCharArray(),offset, (a, b)-> b - (a%b)); //left rotation
 		System.out.println(Arrays.toString(charArr));
 	}
 	
-	public static char[] rotateString(char[] charArr, int offset) {
+	public static char[] rotateString(char[] charArr, int offset, BiFunction<Integer,Integer,Integer> getOffset ) {
 		int length = charArr.length;
 		if(charArr == null || length == 0 || length == offset || offset%length == 0) return charArr;
-		int rem = offset%length;
-		charArr = rotate(charArr, 0, length-rem-1 );
-		charArr = rotate(charArr, length - rem, length-1 );
+		offset = getOffset.apply(offset, length);
+		charArr = rotate(charArr, 0, length-offset-1 );
+		charArr = rotate(charArr, length - offset, length-1 );
 		charArr = rotate(charArr, 0, length-1);
 		return charArr;
 	}
